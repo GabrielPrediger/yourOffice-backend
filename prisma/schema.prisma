@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  usuario     String    @unique
+  senha       String
+  email       String    @unique
+  permissao   String
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  @@map("users")
+}
+
+model Saida {
+  id          Int       @id @default(autoincrement())
+  valor       Float     
+  data        DateTime
+  descricao   String   
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  @@map("saidas")
+}
+
+// Um cliente pode ter varias entradas (ou seja, varias compras)
+model Cliente {
+  id               Int       @id @default(autoincrement())
+  nome             String    
+  data_nascimento  DateTime
+  cpf_cnpj         String    @unique
+  rg               String    @unique
+  endereco         String
+  entradas         Entrada[] @relation("Cliente")
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+
+  @@map("clientes")
+
+}
+
+// Uma entrada tem que ter somente um clinte
+// Uma entrada pode ter varios produtos e tem que ter um produto
+model Entrada { 
+  id          Int       @id @default(autoincrement())
+  tipoVenda   String     
+  data        DateTime
+  descricao   String   
+  valor       Float
+  cliente     Cliente   @relation("Cliente", fields: [clienteId], references: [id])
+  clienteId   Int
+  produto     Produto   @relation("Produto", fields: [produtoId], references: [id])
+  produtoId   Int
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  @@map("entradas")
+}
+
+// Um produto pode estar em varias entradas
+model Produto { 
+  id          Int       @id @default(autoincrement())
+  nome        String     
+  descricao   String   
+  quantidade  Int
+  tipo        String
+  foto        String
+  preco       Float
+  entradas    Entrada[] @relation("Produto")
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  @@map("produtos")
+
+}
