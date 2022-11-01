@@ -12,6 +12,10 @@ import { GetUserByNameController } from "./useCases/User/GetUser/GetUserByNameCo
 import { UpdateUserController } from "./useCases/User/UpdateUser/UpdateUserController";
 import { DeleteSaidaController } from "./useCases/Saidas/DeleteSaida/DeleteSaidaController";
 import { UpdateProdutoController } from "./useCases/Products/UpdateProduto/UpdateProdutoController";
+import { CreateClienteController } from "./useCases/Cliente/CreateCliente/CreateClienteController";
+import { GetClienteByNameController } from "./useCases/Cliente/GetClienteByName/GetClienteByNameController";
+import { DeleteClienteController } from "./useCases/Cliente/DeleteCliente/DeleteClienteController";
+import { UpdateClienteController } from "./useCases/Cliente/UpdateProduto/UpdateClienteController";
 
 const router = Router();
 
@@ -31,6 +35,11 @@ const getProdutosByName = new GetProdutoByNameController();
 const deleteProdutoController = new DeleteProdutoController();
 const updateProdutoController = new UpdateProdutoController();
 
+const createClienteController = new CreateClienteController();
+const getClienteByName = new GetClienteByNameController();
+const deleteClienteController = new DeleteClienteController();
+const updateClienteController = new UpdateClienteController();
+
 /* User Routes */
 router.post("/create-user", createUserController.handle);
 router.put("/update-user", updateUserController.handle);
@@ -48,5 +57,11 @@ router.get("/produtos", getProdutosByName.handle);
 router.post("/create-produto", createProdutoController.handle);
 router.delete("/delete-produto", deleteProdutoController.handle);
 router.put("/update-produto", updateProdutoController.handle);
+
+/* Clientes Routes */
+router.get("/clientes", getClienteByName.handle);
+router.post("/create-cliente", createClienteController.handle);
+router.delete("/delete-cliente", deleteClienteController.handle);
+router.put("/update-cliente", updateClienteController.handle);
 
 export { router };
