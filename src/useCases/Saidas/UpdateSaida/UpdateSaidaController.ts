@@ -3,11 +3,12 @@ import { UpdateSaidaUseCase } from "./UpdateSaidaUseCase";
 
 export class UpdateSaidaController {
   async handle(request: Request, response: Response) {
-    const { valor, descricao } = request.body;
+    const { id, valor, descricao } = request.body;
 
     const updateSaidaController = new UpdateSaidaUseCase();
 
     const result = await updateSaidaController.execute({
+      id,
       valor,
       descricao,
     });

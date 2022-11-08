@@ -1,8 +1,8 @@
 export interface ICliente {
-  id?: any;
-  nome: string;
-  data_nascimento: Date;
-  cpf_cnpj: string;
-  rg: string;
-  endereco: string;
+  id?: number;
+  nome?: string;
+  data_nascimento?: Date;
+  cpf_cnpj?: string;
+  rg?: string;
+  endereco?: string;
 }
