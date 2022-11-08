@@ -15,7 +15,7 @@ import { UpdateProdutoController } from "./useCases/Products/UpdateProduto/Updat
 import { CreateClienteController } from "./useCases/Cliente/CreateCliente/CreateClienteController";
 import { GetClienteByNameController } from "./useCases/Cliente/GetClienteByName/GetClienteByNameController";
 import { DeleteClienteController } from "./useCases/Cliente/DeleteCliente/DeleteClienteController";
-import { UpdateClienteController } from "./useCases/Cliente/UpdateProduto/UpdateClienteController";
+import { UpdateClienteController } from "./useCases/Cliente/UpdateCliente/UpdateClienteController";
 import { GetEntradasByDateController } from "./useCases/Entradas/GetEntradasByName/GetEntradasByDateController";
 import { CreateEntradaController } from "./useCases/Entradas/CreateEntradas/CreateEntradaController";
 import { DeleteEntradaController } from "./useCases/Entradas/DeleteEntradas/DeleteEntradaController";
