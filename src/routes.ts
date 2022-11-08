@@ -16,6 +16,10 @@ import { CreateClienteController } from "./useCases/Cliente/CreateCliente/Create
 import { GetClienteByNameController } from "./useCases/Cliente/GetClienteByName/GetClienteByNameController";
 import { DeleteClienteController } from "./useCases/Cliente/DeleteCliente/DeleteClienteController";
 import { UpdateClienteController } from "./useCases/Cliente/UpdateProduto/UpdateClienteController";
+import { GetEntradasByDateController } from "./useCases/Entradas/GetEntradasByName/GetEntradasByDateController";
+import { CreateEntradaController } from "./useCases/Entradas/CreateEntradas/CreateEntradaController";
+import { DeleteEntradaController } from "./useCases/Entradas/DeleteEntradas/DeleteEntradaController";
+import { UpdateEntradaController } from "./useCases/Entradas/UpdateEntradas/UpdateEntradaController";
 
 const router = Router();
 
@@ -40,6 +44,11 @@ const getClienteByName = new GetClienteByNameController();
 const deleteClienteController = new DeleteClienteController();
 const updateClienteController = new UpdateClienteController();
 
+const createEntradaController = new CreateEntradaController();
+const getEntradaByDate = new GetEntradasByDateController()
+const deleteEntradaController = new DeleteEntradaController();
+const updateEntradaController = new UpdateEntradaController();
+
 /* User Routes */
 router.post("/create-user", createUserController.handle);
 router.put("/update-user", updateUserController.handle);
@@ -63,5 +72,11 @@ router.get("/clientes", getClienteByName.handle);
 router.post("/create-cliente", createClienteController.handle);
 router.delete("/delete-cliente", deleteClienteController.handle);
 router.put("/update-cliente", updateClienteController.handle);
+
+/* Entradas Routes */
+router.get("/entradas", getEntradaByDate.handle);
+router.post("/create-entrada", createEntradaController.handle);
+router.delete("/delete-entrada", deleteEntradaController.handle);
+router.put("/update-entrada", updateEntradaController.handle);
 
 export { router };
