@@ -1,4 +1,4 @@
-import { Cliente, Produto } from "@prisma/client";
+import { Cliente } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
 import { AppError } from "../../../errors/AppError";
 import { ICliente } from "../ClienteDTO";
