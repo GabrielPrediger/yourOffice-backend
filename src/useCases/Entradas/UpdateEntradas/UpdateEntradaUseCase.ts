@@ -16,7 +16,7 @@ export class UpdateEntradaUseCase {
       where: { id },
       data: {
         tipoVenda,
-        data,
+        data: new Date(data),
         descricao,
         valor,
         clienteId,
