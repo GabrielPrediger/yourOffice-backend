@@ -1,7 +1,7 @@
 export interface ICliente {
   id?: number;
   nome?: string;
-  data_nascimento?: Date;
+  data_nascimento: string;
   cpf_cnpj?: string;
   rg?: string;
   endereco?: string;

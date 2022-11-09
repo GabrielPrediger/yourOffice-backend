@@ -1,7 +1,7 @@
 export interface IEntrada {
   id?: any;
   tipoVenda: string;
-  data?: Date;
+  data: string;
   descricao: string;
   valor: number;
   clienteId: any;

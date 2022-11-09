@@ -15,7 +15,7 @@ export class UpdateClienteUseCase {
       where: { id },
       data: {
         nome,
-        data_nascimento,
+        data_nascimento: new Date(data_nascimento),
         cpf_cnpj,
         rg,
         endereco,
