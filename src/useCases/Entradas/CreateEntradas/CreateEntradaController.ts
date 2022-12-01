@@ -3,23 +3,27 @@ import { CreateEntradaUseCase } from "./CreateEntradaUseCase";
 
 export class CreateEntradaController {
   async handle(request: Request, response: Response) {
-    const { tipoVenda,
+    const { id, tipoVenda,
       data,
       descricao,
       valor,
       clienteId,
-      produtoId } = request.body;
+      produtoIds
+    } = request.body;
 
     const createEntrada = new CreateEntradaUseCase();
 
     const result = await createEntrada.execute({
+      id,
       tipoVenda,
-      data,
+      data: new Date(data),
       descricao,
-      valor,
+      valor: Number(valor),
       clienteId,
-      produtoId
+      produtoIds
     });
+
+
     return response.status(201).json(result);
   }
 }

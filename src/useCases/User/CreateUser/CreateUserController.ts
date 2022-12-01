@@ -7,6 +7,8 @@ export class CreateUserController {
 
     //chamo o meu User
     const createUserService = new CreateUserUseCase();
+
+    console.log(createUserService, 'createUserService')
     //eu executo
     const result = await createUserService.execute({
       usuario,
@@ -14,6 +16,7 @@ export class CreateUserController {
       email,
       permissao,
     });
+    console.log(result, 'result')
 
     //retorno a informação pro service
     //passando um status

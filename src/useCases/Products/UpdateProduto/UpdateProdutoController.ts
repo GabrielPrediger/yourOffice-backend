@@ -3,7 +3,8 @@ import { UpdateProdutoUseCase } from "./UpdateProdutoUseCase";
 
 export class UpdateProdutoController {
   async handle(request: Request, response: Response) {
-    const { id, nome, descricao, quantidade, tipo, foto, preco } = request.body;
+    const { id }: any = request.params;
+    const { nome, descricao, quantidade, tipo, foto, preco } = request.body;
 
     const updateProdutoController = new UpdateProdutoUseCase();
 
@@ -11,10 +12,10 @@ export class UpdateProdutoController {
       id,
       nome,
       descricao,
-      quantidade,
+      quantidade: Number(quantidade),
       tipo,
       foto,
-      preco,
+      preco: Number(preco),
     });
 
     return response.status(201).json(result);

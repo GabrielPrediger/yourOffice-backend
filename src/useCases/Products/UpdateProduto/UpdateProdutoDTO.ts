@@ -4,6 +4,6 @@ export interface IProduct {
   descricao: string;
   quantidade: number;
   tipo: string; //alugar ou vender
-  foto: string;
+  foto?: string;
   preco: number;
 }

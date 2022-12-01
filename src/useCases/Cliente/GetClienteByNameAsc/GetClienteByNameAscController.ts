@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { GetClienteByNameUseCase } from "./GetClienteByNameUseCase";
+import { GetClienteByNameAscUseCase } from "./GetClienteByNameAscUseCase";
 
-export class GetClienteByNameController {
+export class GetClienteByNameAscController {
   async handle(request: Request, response: Response) {
-    const getClientesByName = new GetClienteByNameUseCase();
+    const getClientesByName = new GetClienteByNameAscUseCase();
 
     const result = await getClientesByName.execute();
 

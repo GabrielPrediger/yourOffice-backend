@@ -1,11 +1,11 @@
 import { Entrada } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
-import { IEntrada } from "../EntradasDTO";
+import { IEntrada } from "./IDeleteEntrada";
 
 export class DeleteEntradaUseCase {
   async execute({ id }: IEntrada): Promise<Entrada> {
     const deleteEntrada = await prismaClient.entrada.delete({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     return deleteEntrada;

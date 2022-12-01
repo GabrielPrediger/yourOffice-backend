@@ -1,4 +1,5 @@
 import { User } from "@prisma/client";
+import { hash } from "bcryptjs";
 import { prismaClient } from "../../../database/prismaClient";
 import { AppError } from "../../../errors/AppError";
 import { ICreateUser } from "./CreateUserDTO";
@@ -22,9 +23,12 @@ export class CreateUserUseCase {
       throw new AppError("User Already Exists", 400);
     }
 
+    const senhaHash = await hash(senha, 8)
+
     const user = await prismaClient.user.create({
-      data: { usuario, senha, email, permissao },
+      data: { usuario, senha: senhaHash, email, permissao },
     });
+    console.log(user, 'user')
 
     return user;
   }

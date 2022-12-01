@@ -3,7 +3,7 @@ import { DeleteSaidaUseCase } from "./DeleteSaidaUseCase";
 
 export class DeleteSaidaController {
   async handle(request: Request, response: Response) {
-    const { id } = request.body;
+    const { id }: any = request.params;
 
     const deleteSaidaController = new DeleteSaidaUseCase();
 

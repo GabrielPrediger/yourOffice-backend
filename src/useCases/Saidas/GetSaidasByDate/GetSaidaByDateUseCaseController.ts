@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { GetSaidaByDateUseCase } from "./GetSaidaByDateUseCase";
 
-export class GetSaidaByDateUseCaseController {
+export class GetSaidaByDateController {
   async handle(request: Request, response: Response) {
     const getSaidaByDateUseCase = new GetSaidaByDateUseCase();
 

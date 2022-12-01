@@ -4,25 +4,17 @@ import { AppError } from "../../../errors/AppError";
 import { IProduct } from "./CreateProdutoDTO";
 
 export class CreateProdutoUseCase {
-  async execute({
-    id,
-    nome,
-    descricao,
-    quantidade,
-    tipo,
-    foto,
-    preco,
-  }: IProduct): Promise<Produto> {
+  async execute(produto: IProduct): Promise<Produto> {
+    const { nome } = produto;
     const productAlreadyExists = await prismaClient.produto.findMany({
       where: { nome },
     });
-
     if (productAlreadyExists.length) {
-      throw new AppError("User Already Exists", 400);
+      throw new AppError("Produto Already Exists", 400);
     }
 
     const createProduto = await prismaClient.produto.create({
-      data: { nome, descricao, quantidade, tipo, foto, preco },
+      data: { ...produto, preco: Number(produto.preco) },
     });
 
     return createProduto;

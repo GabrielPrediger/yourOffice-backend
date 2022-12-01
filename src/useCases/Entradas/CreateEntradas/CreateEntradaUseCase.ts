@@ -10,19 +10,28 @@ export class CreateEntradaUseCase {
     descricao,
     valor,
     clienteId,
-    produtoId
+    produtoIds
   }: IEntrada): Promise<Entrada> {
 
     const createEntrada = await prismaClient.entrada.create({
       data: {
+        id,
         tipoVenda,
         data: new Date(data),
         descricao,
-        valor,
+        valor: Number(valor),
         clienteId,
-        produtoId
-      },
+        produtoIds
+      }
     });
+
+    const teste = await prismaClient.entradaProduto.create({
+      data: {
+        entrada_id: id,
+        produto_id: produtoIds
+      }
+    })
+
 
     return createEntrada;
   }

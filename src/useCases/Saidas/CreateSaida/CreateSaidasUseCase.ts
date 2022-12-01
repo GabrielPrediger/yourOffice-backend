@@ -6,7 +6,7 @@ export class CreateSaidasUseCase {
   async execute({ valor, data, descricao }: ICreateSaidas): Promise<Saida> {
     const createSaida = await prismaClient.saida.create({
       data: {
-        valor,
+        valor: Number(valor),
         data: new Date(data),
         descricao,
       },

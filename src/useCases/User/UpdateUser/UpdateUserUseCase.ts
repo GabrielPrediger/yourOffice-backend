@@ -10,11 +10,12 @@ export class UpdateUserUseCase {
     email,
     permissao,
   }: IUpdateUser): Promise<User> {
-    const user = await prismaClient.user.update({
-      where: { id },
+
+    const updateUser = await prismaClient.user.update({
+      where: { id: Number(id) },
       data: { usuario, senha, email, permissao },
     });
 
-    return user;
+    return updateUser;
   }
 }

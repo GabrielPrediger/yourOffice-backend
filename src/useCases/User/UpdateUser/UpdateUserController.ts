@@ -3,7 +3,8 @@ import { UpdateUserUseCase } from "./UpdateUserUseCase";
 
 export class UpdateUserController {
   async handle(request: Request, response: Response) {
-    const { id, usuario, senha, email, permissao } = request.body;
+    const { id }: any = request.params;
+    const { usuario, senha, email, permissao } = request.body;
 
     const updateUserController = new UpdateUserUseCase();
 

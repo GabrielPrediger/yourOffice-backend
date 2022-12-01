@@ -5,7 +5,7 @@ import { IDeleteSaida } from "./DeleteSaidaDTO";
 export class DeleteSaidaUseCase {
   async execute({ id }: IDeleteSaida): Promise<Saida> {
     const deleteSaida = await prismaClient.saida.delete({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     return deleteSaida;

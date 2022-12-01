@@ -10,19 +10,33 @@ export class UpdateEntradaUseCase {
     descricao,
     valor,
     clienteId,
-    produtoId
+    produtoIds
   }: IEntrada): Promise<Entrada> {
     const updateCliente = await prismaClient.entrada.update({
-      where: { id },
+      where: { id: Number(id) },
       data: {
         tipoVenda,
         data: new Date(data),
         descricao,
-        valor,
-        clienteId,
-        produtoId
+        valor: Number(valor),
+        clienteId
       },
     });
+
+    await prismaClient.entradaProduto.deleteMany({
+      where: {
+        entrada_id: id
+      },
+    })
+
+    await Promise.all(produtoIds.map(async value => {
+      await prismaClient.entradaProduto.create({
+        data: {
+          entrada_id: id,
+          produto_id: value
+        }
+      })
+    }))
 
     return updateCliente;
   }

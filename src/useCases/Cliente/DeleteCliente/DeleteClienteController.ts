@@ -3,7 +3,7 @@ import { DeleteClienteUseCase } from "./DeleteClienteUseCase";
 
 export class DeleteClienteController {
   async handle(request: Request, response: Response) {
-    const { id } = request.body;
+    const { id }: any = request.params;
 
     const deleteClienteController = new DeleteClienteUseCase();
 

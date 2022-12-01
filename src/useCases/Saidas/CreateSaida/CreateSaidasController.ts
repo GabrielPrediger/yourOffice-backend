@@ -8,7 +8,7 @@ export class CreateSaidasController {
     const createSaidasService = new CreateSaidasUseCase();
 
     const result = await createSaidasService.execute({
-      valor,
+      valor: Number(valor),
       data,
       descricao,
     });

@@ -1,9 +1,10 @@
+import { Produto } from "../../types/IProduto";
 export interface IEntrada {
   id?: any;
   tipoVenda: string;
-  data: string;
+  data: Date;
   descricao: string;
   valor: number;
   clienteId: any;
-  produtoId: any;
+  produtoIds: number;
 }
