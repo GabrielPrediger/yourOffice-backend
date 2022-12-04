@@ -84,7 +84,6 @@ router.post("/create-user", createUserController.handle);
 router.put("/update-user/:id", updateUserController.handle);
 router.get("/get-user", getUserController.handle);
 router.get("/get-user-id/:id", getUserIdController.handle);
-router.get("/get-user-by-data", getSaidaByDateController.handle);
 router.get("/get-user-desc", getUserDescController.handle);
 router.delete("/delete-user/:id", deleteUserController.handle);
 
@@ -93,7 +92,8 @@ router.post("/create-saida", createSaidasController.handle);
 router.delete("/delete-saida/:id", deleteSaidasController.handle);
 router.put("/update-saida/:id", updateSaidaController.handle);
 router.get("/get-saida-id/:id", getSaidaIdController.handle);
-router.get("/get-saida", getSaidaByValueController.handle);
+router.get("/get-saida-by-value", getSaidaByValueController.handle);
+router.get("/get-saida-by-data", getSaidaByDateController.handle);
 
 /* Produtos Routes */
 router.get("/produtos", getProdutosByName.handle);

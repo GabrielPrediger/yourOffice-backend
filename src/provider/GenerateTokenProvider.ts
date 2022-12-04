@@ -4,7 +4,7 @@ class GenerateTokenProvider {
     async execute(userId: string) {
         const token = sign({}, process.env.PRIVATE_KEY as any, {
             subject: userId,
-            expiresIn: "20s"
+            expiresIn: "8h"
         })
 
         return token;

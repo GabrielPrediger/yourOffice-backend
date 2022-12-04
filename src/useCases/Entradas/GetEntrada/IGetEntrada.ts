@@ -1,3 +1,3 @@
 export interface IGetEntrada {
-    id: any;
+    id: number;
 }

@@ -1,5 +1,6 @@
 import { Cliente, Entrada } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
+import { AppError } from "../../../errors/AppError";
 import { IEntrada } from "../EntradasDTO";
 
 export class UpdateEntradaUseCase {
@@ -10,33 +11,24 @@ export class UpdateEntradaUseCase {
     descricao,
     valor,
     clienteId,
-    produtoIds
+    produtos,
+    data_inicio_aluguel,
+    data_fim_aluguel,
   }: IEntrada): Promise<Entrada> {
+
     const updateCliente = await prismaClient.entrada.update({
       where: { id: Number(id) },
       data: {
+        id,
         tipoVenda,
         data: new Date(data),
         descricao,
         valor: Number(valor),
-        clienteId
-      },
+        clienteId,
+        data_inicio_aluguel,
+        data_fim_aluguel,
+      }
     });
-
-    await prismaClient.entradaProduto.deleteMany({
-      where: {
-        entrada_id: id
-      },
-    })
-
-    await Promise.all(produtoIds.map(async value => {
-      await prismaClient.entradaProduto.create({
-        data: {
-          entrada_id: id,
-          produto_id: value
-        }
-      })
-    }))
 
     return updateCliente;
   }

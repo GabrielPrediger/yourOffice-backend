@@ -8,7 +8,9 @@ export class CreateEntradaController {
       descricao,
       valor,
       clienteId,
-      produtoIds
+      produtos,
+      data_inicio_aluguel,
+      data_fim_aluguel,
     } = request.body;
 
     const createEntrada = new CreateEntradaUseCase();
@@ -20,7 +22,9 @@ export class CreateEntradaController {
       descricao,
       valor: Number(valor),
       clienteId,
-      produtoIds
+      produtos,
+      data_inicio_aluguel,
+      data_fim_aluguel,
     });
 
 

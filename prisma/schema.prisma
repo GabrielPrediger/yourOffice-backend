@@ -67,8 +67,8 @@ model Entrada {
   cliente             Cliente          @relation("Cliente", fields: [clienteId], references: [id])
   produtos            Produto[]
   clienteId           Int
-  data_inicio_aluguel DateTime
-  data_fim_aluguel    DateTime
+  data_inicio_aluguel DateTime?
+  data_fim_aluguel    DateTime?
   created_at          DateTime         @default(now())
   updated_at          DateTime         @updatedAt
   EntradaProduto      EntradaProduto[]
@@ -79,6 +79,7 @@ model Entrada {
 model EntradaProduto {
   entrada_id Int
   produto_id Int
+  quantidade Int
   entrada    Entrada @relation(fields: [entrada_id], references: [id])
   produto    Produto @relation(fields: [produto_id], references: [id])
 
@@ -86,7 +87,6 @@ model EntradaProduto {
   @@map("entrada_produto")
 }
 
-// Um produto pode estar em varias entradas
 model Produto {
   id             Int              @id @default(autoincrement())
   nome           String
