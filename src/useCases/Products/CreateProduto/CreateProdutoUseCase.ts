@@ -14,7 +14,7 @@ export class CreateProdutoUseCase {
     }
 
     const createProduto = await prismaClient.produto.create({
-      data: { ...produto, preco: Number(produto.preco) },
+      data: { ...produto, quantidade: Number(produto.quantidade), preco: Number(produto.preco) },
     });
 
     return createProduto;

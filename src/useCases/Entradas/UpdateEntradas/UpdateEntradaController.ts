@@ -17,7 +17,7 @@ export class UpdateEntradaController {
       clienteId,
       produtos,
       data_inicio_aluguel,
-      data_fim_aluguel,
+      data_fim_aluguel
     });
 
     return response.status(201).json(result);

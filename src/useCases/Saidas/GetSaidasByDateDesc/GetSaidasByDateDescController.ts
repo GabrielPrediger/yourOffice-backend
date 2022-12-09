@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { GetSaidaByDateUseCase } from "./GetSaidaByDateUseCase";
+import { GetSaidasByDateDescUseCase } from "./GetSaidasByDateDescUseCase";
 
-export class GetSaidaByDateController {
+export class GetSaidasByDateDescController {
   async handle(request: Request, response: Response) {
-    const getSaidaByDateUseCase = new GetSaidaByDateUseCase();
+    const getSaidaByDateUseCase = new GetSaidasByDateDescUseCase();
 
     const result = await getSaidaByDateUseCase.execute();
 

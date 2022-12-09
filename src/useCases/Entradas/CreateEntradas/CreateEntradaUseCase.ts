@@ -5,7 +5,6 @@ import { IEntrada } from "../EntradasDTO";
 
 export class CreateEntradaUseCase {
   async execute({
-    id,
     tipoVenda,
     data,
     descricao,
@@ -23,8 +22,6 @@ export class CreateEntradaUseCase {
           id: produto.id
         }
       })
-      console.log(prevProduto, 'prevProduto');
-
 
       if (!prevProduto) {
         throw new AppError("Produto não encontrado", 404);
@@ -38,8 +35,6 @@ export class CreateEntradaUseCase {
     if (produtoSemEstoque) {
       throw new AppError("Produto sem estoque", 422);
     }
-    console.log(quantidades, 'quantidadesasdads');
-
 
     await Promise.all(quantidades.map(async (produto) => {
       await prismaClient.produto.update({
@@ -53,20 +48,19 @@ export class CreateEntradaUseCase {
     try {
       const createEntrada = await prismaClient.entrada.create({
         data: {
-          id,
           tipoVenda,
-          data: new Date(data),
+          data: new Date(Number(data)),
           descricao,
           valor: Number(valor),
           clienteId,
-          data_inicio_aluguel,
-          data_fim_aluguel,
+          data_inicio_aluguel: new Date(Number(data_inicio_aluguel)),
+          data_fim_aluguel: new Date(Number(data_fim_aluguel)),
         }
       });
 
       await Promise.all(produtos.map(async (produto) => await prismaClient.entradaProduto.create({
         data: {
-          entrada_id: id,
+          entrada_id: createEntrada.id,
           produto_id: produto.id,
           quantidade: produto.quantidade
         }

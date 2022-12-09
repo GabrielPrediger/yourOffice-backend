@@ -2,13 +2,8 @@ import { NextFunction, request, Request, response, Response } from "express";
 import { verify } from "jsonwebtoken";
 
 export function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
-    console.log(req, 'Request');
 
     const authToken = req.headers.authorization;
-
-
-
-    console.log(authToken, 'AUTHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH')
 
     if (!authToken) {
         return res.status(401).json({

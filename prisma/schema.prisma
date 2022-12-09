@@ -61,7 +61,7 @@ model Cliente {
 model Entrada {
   id                  Int              @id @default(autoincrement())
   tipoVenda           String
-  data                DateTime
+  data                DateTime?
   descricao           String
   valor               Float
   cliente             Cliente          @relation("Cliente", fields: [clienteId], references: [id])
@@ -69,6 +69,7 @@ model Entrada {
   clienteId           Int
   data_inicio_aluguel DateTime?
   data_fim_aluguel    DateTime?
+  isAtrasado          Boolean?
   created_at          DateTime         @default(now())
   updated_at          DateTime         @updatedAt
   EntradaProduto      EntradaProduto[]

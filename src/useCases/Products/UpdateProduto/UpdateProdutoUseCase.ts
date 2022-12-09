@@ -15,7 +15,7 @@ export class UpdateProdutoUseCase {
 
     const updateProduto = await prismaClient.produto.update({
       where: { id: Number(id) },
-      data: { nome, descricao, quantidade, foto, tipo, preco },
+      data: { nome, descricao, quantidade, foto, tipo, preco: Number(preco) },
     });
 
     return updateProduto;

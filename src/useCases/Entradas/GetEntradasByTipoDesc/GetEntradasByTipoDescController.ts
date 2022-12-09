@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { GetEntradasByDateUseCase } from "./GetEntradasByDateUseCase";
+import { GetEntradasByTipoDescUseCase } from "./GetEntradasByTipoDescUseCase";
 
-export class GetEntradasByDateController {
+export class GetEntradasByTipoDescController {
   async handle(request: Request, response: Response) {
-    const getEntradasByDate = new GetEntradasByDateUseCase();
+    const getEntradasByDate = new GetEntradasByTipoDescUseCase();
 
     const result = await getEntradasByDate.execute();
 

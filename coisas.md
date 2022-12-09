@@ -10,3 +10,8 @@
 - E depois vai pro banco
 
 Server -> Controller -> Service -> Repositorie -> BD
+
+Server -> Getway -> Services -> DB
+
+Getway: Controlar os dados que entram e que saiem 
+

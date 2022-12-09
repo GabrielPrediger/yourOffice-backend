@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { GetProdutoByNameUseCase } from "./GetProdutoByNameUseCase";
+import { GetProdutoByNameAscUseCase } from "./GetProdutoByNameUseCase";
 
-export class GetProdutoByNameController {
+export class GetProdutoByNameAscController {
   async handle(request: Request, response: Response) {
-    const getProdutosByName = new GetProdutoByNameUseCase();
+    const getProdutosByName = new GetProdutoByNameAscUseCase();
 
     const result = await getProdutosByName.execute();
 

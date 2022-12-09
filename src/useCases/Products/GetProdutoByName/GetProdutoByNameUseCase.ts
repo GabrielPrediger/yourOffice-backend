@@ -1,7 +1,7 @@
 import { Produto } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
 
-export class GetProdutoByNameUseCase {
+export class GetProdutoByNameAscUseCase {
   async execute(): Promise<Produto[]> {
     const produto = await prismaClient.produto.findMany({
       orderBy: {
