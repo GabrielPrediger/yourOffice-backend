@@ -10,12 +10,8 @@ export class CancelarEntradaUseCase {
         })
 
         //apaguei as entradas
-        await prismaClient.entradaProduto.deleteMany({
-            where: { entrada_id: Number(id) },
-        })
-
-
         await Promise.all(produtosIniciais.map(async ({ entrada_id, produto_id, quantidade }) => {
+
             const produto = await prismaClient.produto.findUnique({
                 where: { id: produto_id }
             })
@@ -23,14 +19,19 @@ export class CancelarEntradaUseCase {
             await prismaClient.produto.update({
                 where: { id: produto_id },
                 data: {
-                    quantidade: produto?.quantidade ?? 0 + quantidade
+                    quantidade: (produto?.quantidade ?? 0) + quantidade
                 }
             })
         }))
+
+        await prismaClient.entradaProduto.deleteMany({
+            where: { entrada_id: Number(id) },
+        })
 
         await prismaClient.entrada.delete({
             where: { id: Number(id) },
         });
 
+        return
     }
 }

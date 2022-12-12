@@ -50,6 +50,7 @@ import { GetEntradasByDateAluguelAscController } from './useCases/Entradas/GetEn
 import { GetEntradasByDateAluguelDescController } from './useCases/Entradas/GetEntradasByDateAluguelDesc/GetEntradasByDateAluguelDescController';
 import { CancelarEntradaController } from './useCases/Entradas/CancelarEntrada/CancelarEntradaController';
 import { UpdateIsAtrasadoController } from './useCases/Entradas/UpdateIsAtrasado/UpdateIsAtrasadoController';
+import { GetEntradaIsAtrasadoController } from './useCases/Entradas/GetEntradaIsAtrasado/GetEntradaIsAtrasadoController';
 
 const router = Router();
 
@@ -108,7 +109,7 @@ const getEntradaByValorDesc = new GetEntradasByValorDescController();
 const getEntradaByTipoAsc = new GetEntradasByTipoAscController();
 const getEntradaByTipoDesc = new GetEntradasByTipoDescController();
 const updateIsAtrasado = new UpdateIsAtrasadoController();
-
+const getIsAtrasado = new GetEntradaIsAtrasadoController();
 
 router.post("/login", authenticateUserController.handle);
 router.post("/refresh-token", refreshTokenUserController.handle);
@@ -173,6 +174,6 @@ router.get("/entradas-by-valorAsc", getEntradaByValorAsc.handle);
 router.get("/entradas-by-valorDesc", getEntradaByValorDesc.handle);
 router.get("/entradas-by-tipoAsc", getEntradaByTipoAsc.handle);
 router.get("/entradas-by-tipoDesc", getEntradaByTipoDesc.handle);
-
+router.get("/entradas-by-is-atrasado", getIsAtrasado.handle);
 
 export { router };
