@@ -7,6 +7,7 @@ export class CreateUserController {
 
     //chamo o meu User
     const createUserService = new CreateUserUseCase();
+
     //eu executo
     const result = await createUserService.execute({
       usuario,

@@ -1,7 +1,7 @@
 import { Cliente } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
 import { AppError } from "../../../errors/AppError";
-import { ICliente } from "../ClienteDTO";
+import { ICliente } from "./ClienteDTO";
 
 export class CreateClienteUseCase {
   async execute({
@@ -12,12 +12,23 @@ export class CreateClienteUseCase {
     rg,
     endereco,
   }: ICliente): Promise<Cliente> {
+
     const clientAlreadyExists = await prismaClient.cliente.findMany({
       where: { nome },
     });
+    const cpfOrCnpjAlreadyExists = await prismaClient.cliente.findMany({
+      where: { cpf_cnpj },
+    });
+    const rgAlreadyExists = await prismaClient.cliente.findMany({
+      where: { rg },
+    });
 
     if (clientAlreadyExists.length) {
-      throw new AppError("Cliente Already Exists", 400);
+      throw new AppError("Cliente já existente", 400);
+    } else if (cpfOrCnpjAlreadyExists.length) {
+      throw new AppError("Cpf ou Cnpj já existente", 400);
+    } else if (rgAlreadyExists.length) {
+      throw new AppError("Rg já existente", 400);
     }
 
     const createCliente = await prismaClient.cliente.create({

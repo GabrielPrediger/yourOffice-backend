@@ -8,18 +8,24 @@ export class CreateEntradaController {
       descricao,
       valor,
       clienteId,
-      produtoId } = request.body;
+      produtos,
+      data_inicio_aluguel,
+      data_fim_aluguel,
+    } = request.body;
 
     const createEntrada = new CreateEntradaUseCase();
 
     const result = await createEntrada.execute({
       tipoVenda,
-      data,
+      data: new Date(data),
       descricao,
-      valor,
+      valor: Number(valor),
       clienteId,
-      produtoId
+      produtos,
+      data_inicio_aluguel: new Date(data_inicio_aluguel),
+      data_fim_aluguel: new Date(data_fim_aluguel),
     });
+
     return response.status(201).json(result);
   }
 }

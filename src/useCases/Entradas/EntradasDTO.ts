@@ -1,9 +1,11 @@
 export interface IEntrada {
-  id?: any;
+  id?: number;
   tipoVenda: string;
-  data: string;
   descricao: string;
   valor: number;
   clienteId: any;
-  produtoId: any;
+  produtos: Array<{ id: number, quantidade: number }>;
+  data?: string | number | Date | undefined;
+  data_fim_aluguel?: string | number | Date | undefined;
+  data_inicio_aluguel?: string | number | Date | undefined;
 }

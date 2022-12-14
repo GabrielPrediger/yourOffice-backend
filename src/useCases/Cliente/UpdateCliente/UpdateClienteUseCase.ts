@@ -11,8 +11,9 @@ export class UpdateClienteUseCase {
     rg,
     endereco,
   }: ICliente): Promise<Cliente> {
+
     const updateCliente = await prismaClient.cliente.update({
-      where: { id },
+      where: { id: Number(id) },
       data: {
         nome,
         data_nascimento: new Date(data_nascimento),

@@ -10,11 +10,12 @@ export class CreateProdutoController {
     const result = await createProduto.execute({
       nome,
       descricao,
-      quantidade,
+      quantidade: Number(quantidade),
       tipo,
       foto,
-      preco,
+      preco: Number(preco),
     });
+
     return response.status(201).json(result);
   }
 }

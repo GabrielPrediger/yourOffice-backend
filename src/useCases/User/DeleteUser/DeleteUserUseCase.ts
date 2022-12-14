@@ -3,9 +3,9 @@ import { prismaClient } from "../../../database/prismaClient";
 import { IDeleteUser } from "./DeleteUserDTO";
 
 export class DeleteUserUseCase {
-  async execute({ usuario }: IDeleteUser): Promise<User> {
+  async execute({ id }: IDeleteUser): Promise<User> {
     const user = await prismaClient.user.delete({
-      where: { usuario },
+      where: { id: Number(id) },
     });
 
     return user;

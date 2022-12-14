@@ -1,5 +1,5 @@
 export interface IUpdateUser {
-  id?: number;
+  id: number;
   usuario: string;
   senha: string;
   email: string;

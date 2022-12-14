@@ -5,7 +5,7 @@ import { ICliente } from "../ClienteDTO";
 export class DeleteClienteUseCase {
   async execute({ id }: ICliente): Promise<Cliente> {
     const deleteCliente = await prismaClient.cliente.delete({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     return deleteCliente;

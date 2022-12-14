@@ -3,7 +3,8 @@ import { UpdateClienteUseCase } from "./UpdateClienteUseCase";
 
 export class UpdateClienteController {
   async handle(request: Request, response: Response) {
-    const { id, nome, data_nascimento, cpf_cnpj, rg, endereco, } = request.body;
+    const { id }: any = request.params;
+    const { nome, data_nascimento, cpf_cnpj, rg, endereco, } = request.body;
 
     const updateClienteController = new UpdateClienteUseCase();
 

@@ -3,13 +3,8 @@ import { UpdateEntradaUseCase } from "./UpdateEntradaUseCase";
 
 export class UpdateEntradaController {
   async handle(request: Request, response: Response) {
-    const { id,
-      tipoVenda,
-      data,
-      descricao,
-      valor,
-      clienteId,
-      produtoId } = request.body;
+    const { id }: any = request.params;
+    const { tipoVenda, data, descricao, valor, clienteId, produtos, data_inicio_aluguel, data_fim_aluguel } = request.body;
 
     const updateEntradaController = new UpdateEntradaUseCase();
 
@@ -20,7 +15,9 @@ export class UpdateEntradaController {
       descricao,
       valor,
       clienteId,
-      produtoId
+      produtos,
+      data_inicio_aluguel,
+      data_fim_aluguel
     });
 
     return response.status(201).json(result);
